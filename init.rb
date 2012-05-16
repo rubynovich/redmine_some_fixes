@@ -4,7 +4,7 @@ Redmine::Plugin.register :redmine_some_fixes do
   name 'Redmine Some Fixes plugin'
   author 'Roman Shipiev'
   description 'Redmine plugin for fixing too long project title'
-  version '0.0.1'
+  version '0.0.2'
   url 'https://github.com/rubynovich/redmine_some_fixes'
   author_url 'http://roman.shipiev.me'
   
@@ -51,9 +51,32 @@ ActionView::Base.class_eval do
     end
     s.html_safe
   end
+
+  def page_header_title_with_tranc
+    if @project.nil? || @project.new_record?
+      h(Setting.app_title)
+    else
+      b = []
+      ancestors = (@project.root? ? [] : @project.ancestors.visible.all)
+      if ancestors.any?
+        root = ancestors.shift
+        b << link_to_project(root, {:jump => current_menu_item}, :class => 'root')
+        if ancestors.size > 2
+          b << "\xe2\x80\xa6"
+          ancestors = ancestors[-2, 2]
+        end
+        b += ancestors.collect {|p| link_to_project(p, {:jump => current_menu_item}, :class => 'ancestor') }
+      end
+      b << trancate(h(@project), 
+          :length => Setting[:plugin_redmine_some_fixes][:tranc_length], 
+          :separator => ' ')
+      b.join(" \xc2\xbb ").html_safe
+    end
+  end
   
   alias_method_chain :link_to_project, :tranc
   alias_method_chain :project_tree_options_for_select, :tranc
+  alias_method_chain :page_header_title, :tranc
   
   private
     def trancate(text, options = {})      
