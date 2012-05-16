@@ -3,7 +3,7 @@ require 'redmine'
 Redmine::Plugin.register :redmine_some_fixes do
   name 'Redmine Some Fixes plugin'
   author 'Roman Shipiev'
-  description 'Redmine plugin for fixed too long project title'
+  description 'Redmine plugin for fixing too long project title'
   version '0.0.1'
   url 'https://github.com/rubynovich/redmine_some_fixes'
   author_url 'http://roman.shipiev.me'
