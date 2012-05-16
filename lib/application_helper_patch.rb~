@@ -1,0 +1,57 @@
+# encoding: utf-8
+#
+# Redmine - project management software
+# Copyright (C) 2006-2011  Jean-Philippe Lang
+#
+# This program is free software; you can redistribute it and/or
+# modify it under the terms of the GNU General Public License
+# as published by the Free Software Foundation; either version 2
+# of the License, or (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software
+# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+
+require_dependency 'application_helper'
+
+module ApplicationHelperPatch
+  
+  def self.included(base)
+    base.send(:include, InstanceMethods)
+
+    base.class_eval do
+      alias_method_chain :link_to_project, :tranc
+    end
+  end
+  
+  module InstanceMethods      
+    # Generates a link to a project if active
+    # Examples:
+    #
+    #   link_to_project(project)                          # => link to the specified project overview
+    #   link_to_project(project, :action=>'settings')     # => link to project settings
+    #   link_to_project(project, {:only_path => false}, :class => "project") # => 3rd arg adds html options
+    #   link_to_project(project, {}, :class => "project") # => html options with default url (project overview)
+    #
+    def link_to_project_with_tranc(project, options={}, html_options = nil)
+      if project.active?
+        url = {:controller => 'projects', :action => 'show', :id => project}.merge(options)
+        link_to(tranc_project(project), url, html_options)
+      else
+        tranc_project(project)
+      end
+    end
+    
+    private
+      def tranc_project(project_name)
+        h(project).gsub(/(.{5})/){ |word| word + "<br />" }
+      end
+  end
+end
+
+ApplicationHelper.send(:include, ApplicationHelperPatch)
