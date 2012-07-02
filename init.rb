@@ -9,9 +9,9 @@ Redmine::Plugin.register :redmine_some_fixes do
   author_url 'http://roman.shipiev.me'
   
   settings :default => {
-    :wrap_length => 40,
-    :tranc_length => 40
-  }  
+    :wrap_length => 60,
+    :tranc_length => 60
+  }
 end
 
 require_dependency 'application_helper'
