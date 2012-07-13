@@ -4,13 +4,13 @@ Redmine::Plugin.register :redmine_some_fixes do
   name 'Redmine Some Fixes plugin'
   author 'Roman Shipiev'
   description 'Redmine plugin for fixing too long project title'
-  version '0.0.2'
+  version '0.0.3'
   url 'https://github.com/rubynovich/redmine_some_fixes'
   author_url 'http://roman.shipiev.me'
   
   settings :default => {
-    :wrap_length => 40,
-    :tranc_length => 40
+    :wrap_length => 60,
+    :tranc_length => 60
   }
 end
 
