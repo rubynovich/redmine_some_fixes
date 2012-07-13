@@ -11,7 +11,7 @@ Redmine::Plugin.register :redmine_some_fixes do
   settings :default => {
     :wrap_length => 40,
     :tranc_length => 40
-  }  
+  }
 end
 
 require_dependency 'application_helper'
