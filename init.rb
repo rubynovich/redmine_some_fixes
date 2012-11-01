@@ -1,10 +1,10 @@
 require 'redmine'
 
 Redmine::Plugin.register :redmine_some_fixes do
-  name 'Redmine Some Fixes plugin'
+  name 'Небольшие изменения'
   author 'Roman Shipiev'
-  description 'Redmine plugin for fixing too long project title'
-  version '0.0.3'
+  description 'Усекает названия проектов до 30 символов во всех select\'ах, где выбираются проекты, ссылках на проекты и в заголовках (сразу под top_menu).'
+  version '0.0.4'
   url 'https://github.com/rubynovich/redmine_some_fixes'
   author_url 'http://roman.shipiev.me'
   
