@@ -1,13 +1,13 @@
 require 'redmine'
 
 Redmine::Plugin.register :redmine_some_fixes do
-  name 'Небольшие изменения'
+  name 'Some fixes'
   author 'Roman Shipiev'
-  description 'Усекает названия проектов до 30 символов во всех select\'ах, где выбираются проекты, ссылках на проекты и в заголовках (сразу под top_menu).'
+  description 'The plugin trancate project name to 30 chars in all project selects, links to projects, in headers'
   version '0.0.4'
   url 'https://github.com/rubynovich/redmine_some_fixes'
   author_url 'http://roman.shipiev.me'
-  
+
   settings :default => {
     :wrap_length => 60,
     :tranc_length => 60
@@ -18,10 +18,10 @@ require_dependency 'application_helper'
 
 ActionView::Base.class_eval do
   include ApplicationHelper
-  
+
   def link_to_project_with_tranc(project, options={}, html_options = nil)
     project_name = word_wrap(
-      h(project), 
+      h(project),
       Setting[:plugin_redmine_some_fixes][:wrap_length]
     ).gsub(/\n/){ "<br />" }
     if project.active?
@@ -30,7 +30,7 @@ ActionView::Base.class_eval do
     else
       h(project_name)
     end
-  end     
+  end
 
   def project_tree_options_for_select_with_tranc(projects, options = {})
     s = ''
@@ -43,9 +43,9 @@ ActionView::Base.class_eval do
         tag_options[:selected] = nil
       end
       tag_options.merge!(yield(project)) if block_given?
-      s << content_tag('option', 
-        trancate(name_prefix + h(project), 
-          :length => Setting[:plugin_redmine_some_fixes][:tranc_length], 
+      s << content_tag('option',
+        trancate(name_prefix + h(project),
+          :length => Setting[:plugin_redmine_some_fixes][:tranc_length],
           :separator => ' '),
         tag_options)
     end
@@ -67,22 +67,22 @@ ActionView::Base.class_eval do
         end
         b += ancestors.collect {|p| link_to_project(p, {:jump => current_menu_item}, :class => 'ancestor') }
       end
-      b << trancate(h(@project), 
-          :length => Setting[:plugin_redmine_some_fixes][:tranc_length], 
+      b << trancate(h(@project),
+          :length => Setting[:plugin_redmine_some_fixes][:tranc_length],
           :separator => ' ')
       b.join(" \xc2\xbb ").html_safe
     end
   end
-  
+
   alias_method_chain :link_to_project, :tranc
   alias_method_chain :project_tree_options_for_select, :tranc
   alias_method_chain :page_header_title, :tranc
-  
+
   private
-    def trancate(text, options = {})      
+    def trancate(text, options = {})
       options[:omission] ||= "…"
       options[:length] ||= 30
-      
+
       length_with_room_for_omission = options[:length] - options[:omission].mb_chars.length
       chars = text.mb_chars
       stop = options[:separator] ?
