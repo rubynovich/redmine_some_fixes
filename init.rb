@@ -80,7 +80,7 @@ ActionView::Base.class_eval do
 
   private
     def trancate(text, options = {})
-      options[:omission] ||= "…"
+      options[:omission] ||= "..."
       options[:length] ||= 30
 
       length_with_room_for_omission = options[:length] - options[:omission].mb_chars.length
