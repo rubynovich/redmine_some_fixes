@@ -23,7 +23,7 @@ ActionView::Base.class_eval do
     project_name = word_wrap(
       h(project),
       Setting[:plugin_redmine_some_fixes][:wrap_length]
-    ).gsub(/\n/){ "<br />" }
+    ).gsub(/\n/){ "<br />" }.html_safe
     if project.active?
       url = {:controller => 'projects', :action => 'show', :id => project}.merge(options)
       link_to(project_name, url, html_options)
