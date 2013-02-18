@@ -23,7 +23,7 @@ ActionView::Base.class_eval do
   def link_to_project_with_tranc(project, options={}, html_options = nil)
     project_name = word_wrap(
       h(project),
-      Setting[:plugin_redmine_some_fixes][:wrap_length]
+      :line_width => Setting[:plugin_redmine_some_fixes][:wrap_length]
     ).gsub(/\n/){ "<br />" }.html_safe
     if project.active?
       url = {:controller => 'projects', :action => 'show', :id => project}.merge(options)
@@ -45,10 +45,6 @@ ActionView::Base.class_eval do
       end
       tag_options.merge!(yield(project)) if block_given?
       s << content_tag('option',
-#        trancate(name_prefix + h(project),
-#          :length => Setting[:plugin_redmine_some_fixes][:tranc_length],
-#          :separator => ' ').html_safe,
-#        tag_options)
         truncate(name_prefix + h(project),
           :length => Setting[:plugin_redmine_some_fixes][:tranc_length],
           :separator => ' ').html_safe,
@@ -59,17 +55,4 @@ ActionView::Base.class_eval do
 
   alias_method_chain :link_to_project, :tranc
   alias_method_chain :project_tree_options_for_select, :tranc
-
-#  private
-#    def trancate(text, options = {})
-#      options[:omission] ||= "..."
-#      options[:length] ||= 30
-
-#      length_with_room_for_omission = options[:length] - options[:omission].mb_chars.length
-#      chars = text.mb_chars
-#      stop = options[:separator] ?
-#        (chars.rindex(options[:separator].mb_chars, length_with_room_for_omission) || length_with_room_for_omission) : length_with_room_for_omission
-
-#      (chars.length > options[:length] ? chars[0...stop] + options[:omission] : text).to_s
-#    end
 end
