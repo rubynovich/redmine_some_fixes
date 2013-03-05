@@ -56,10 +56,15 @@ ActionView::Base.class_eval do
   def time_tag_with_add_info(time)
     text = "#{format_time(time)}, #{distance_of_time_in_words(Time.now, time)}".html_safe
     if @project
-      link_to(text, {:controller => 'activities', :action => 'index', :id => @project, :from => User.current.time_to_date(time)}, :title => format_time(time))
+      link_to(text, {:controller => 'activities', :action => 'index', :id => @project, :from => time.to_date}, :title => format_time(time))
     else
       content_tag('acronym', text, :title => format_time(time))
     end
+#    if @project
+#      link_to(text, {:controller => 'activities', :action => 'index', :id => @project, :from => User.current.time_to_date(time)}, :title => format_time(time))
+#    else
+#      content_tag('acronym', text, :title => format_time(time))
+#    end
   end
 
   alias_method_chain :link_to_project, :tranc
