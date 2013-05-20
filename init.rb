@@ -4,9 +4,9 @@ require 'redmine_some_fixes/hooks'
 Redmine::Plugin.register :redmine_some_fixes do
   name 'Some fixes'
   author 'Roman Shipiev'
-  description 'The plugin trancate project name to 30 chars in all project selects, links to projects, in headers'
+  description 'Trancating project name to 30 chars in all project selects, links to projects, in headers'
   version '0.0.4'
-  url 'https://github.com/rubynovich/redmine_some_fixes'
+  url 'https://bitbucket.org/rubynovich/redmine_some_fixes'
   author_url 'http://roman.shipiev.me'
 
   settings :default => {
