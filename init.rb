@@ -18,8 +18,18 @@ Redmine::Plugin.register :redmine_some_fixes do
                   :caption => :label_internal_intercourse_menu
                 })
     end
+
     menu.delete(:my_page)
-    menu.push( :my_page, {:controller => :my, :action => :page}, {:parent => :internal_intercourse} )
+    menu.push(:my_page, {:controller => :my, :action => :page}, 
+              { :parent => :internal_intercourse })
+
+    menu.delete(:projects)
+    menu.push(:projects, {:controller=>'projects', :action=>'index'}, 
+              { :after => :internal_intercourse,
+                :caption => :label_project_plural
+              })
+              
+
   end
 
   settings :default => {
