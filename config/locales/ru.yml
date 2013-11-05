@@ -1,0 +1,6 @@
+# Russian strings go here for Rails i18n
+ru:
+  activerecord:
+    errors:
+      messages:
+        is_not_a_valid_date: "не является датой"
