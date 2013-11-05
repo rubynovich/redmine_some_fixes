@@ -3,4 +3,4 @@ ru:
   activerecord:
     errors:
       messages:
-        is_not_a_valid_date: "не является датой"
+        not_valid_date: "не является датой"
