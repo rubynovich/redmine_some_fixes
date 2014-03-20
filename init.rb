@@ -10,8 +10,8 @@ Redmine::Plugin.register :redmine_some_fixes do
   author_url 'http://roman.shipiev.me'
 
   settings :default => {
-    :wrap_length => 20,
-    :tranc_length => 20
+    :wrap_length => 60,
+    :tranc_length => 60
   }, :partial => 'settings/some_fixes_settings'
 
 end
