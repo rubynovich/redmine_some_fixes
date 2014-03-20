@@ -1,5 +1,8 @@
 # Russian strings go here for Rails i18n
 ru:
+  label_wrap_length: Длина строки заголовка (до переноса строки)
+  label_tranc_length: Длина строки выпадающего списка
+
   activerecord:
     errors:
       messages:

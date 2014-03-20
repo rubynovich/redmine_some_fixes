@@ -10,9 +10,9 @@ Redmine::Plugin.register :redmine_some_fixes do
   author_url 'http://roman.shipiev.me'
 
   settings :default => {
-    :wrap_length => 60,
-    :tranc_length => 60
-  }
+    :wrap_length => 20,
+    :tranc_length => 20
+  }, :partial => 'settings/some_fixes_settings'
 
 end
 
@@ -24,7 +24,7 @@ ActionView::Base.class_eval do
   def link_to_project_with_tranc(project, options={}, html_options = nil)
     project_name = word_wrap(
       h(project),
-      :line_width => Setting[:plugin_redmine_some_fixes][:wrap_length]
+      :line_width => Setting[:plugin_redmine_some_fixes][:wrap_length].to_i
     ).gsub(/\n/){ "<br />" }.html_safe
     if project.active?
       url = {:controller => 'projects', :action => 'show', :id => project}.merge(options)
@@ -47,7 +47,7 @@ ActionView::Base.class_eval do
       tag_options.merge!(yield(project)) if block_given?
       s << content_tag('option',
         truncate(name_prefix + h(project),
-          :length => Setting[:plugin_redmine_some_fixes][:tranc_length],
+          :length => Setting[:plugin_redmine_some_fixes][:tranc_length].to_i,
           :separator => ' ').html_safe,
         tag_options)
     end

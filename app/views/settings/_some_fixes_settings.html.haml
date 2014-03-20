@@ -1,0 +1,6 @@
+%p
+  %label= l(:label_wrap_length)
+  = text_field_tag("settings[wrap_length]", (@settings[:wrap_length] rescue nil))
+%p
+  %label= l(:label_tranc_length)
+  = text_field_tag("settings[tranc_length]", (@settings[:tranc_length] rescue nil))

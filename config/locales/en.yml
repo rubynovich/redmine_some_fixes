@@ -1,3 +1,5 @@
 # English strings go here for Rails i18n
 en:
   my_label: "My label"
+  label_wrap_length: Length of the title
+  label_tranc_length: Truncation length for drop-down list
