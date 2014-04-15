@@ -1,6 +1,8 @@
 require 'redmine'
 require 'redmine_some_fixes/hooks'
 
+require 'redmine_some_fixes/resize_columns_hook'
+
 Redmine::Plugin.register :redmine_some_fixes do
   name 'Some fixes'
   author 'Roman Shipiev'

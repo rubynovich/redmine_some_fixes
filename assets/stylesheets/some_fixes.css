@@ -3,3 +3,18 @@ div#header h1 {
   text-overflow: ellipsis;
   white-space: nowrap;
 }
+
+.rc-handle-container {
+    position: relative; }
+
+.rc-handle {
+    position: absolute;
+    width: 7px;
+    cursor: ew-resize;
+    margin-left: -3px;
+    z-index: 2; }
+
+table.rc-table-resizing {
+    cursor: ew-resize; }
+table.rc-table-resizing thead, table.rc-table-resizing thead > th, table.rc-table-resizing thead > th > a {
+    cursor: ew-resize; }
