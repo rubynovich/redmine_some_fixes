@@ -15,10 +15,17 @@ div#header h1 {
     z-index: 2; }
 
 table.CRZ td{
-    padding-left: 5px !important;
+    padding-left: 2px !important;
 }
 
 table.rc-table-resizing {
     cursor: ew-resize; }
 table.rc-table-resizing thead, table.rc-table-resizing thead > th, table.rc-table-resizing thead > th > a {
     cursor: ew-resize; }
+
+table.issues td.project, table.issues td.author, table.issues td.assigned_to, table.issues td.start_date, table.issues td.due_date{
+    white-space:normal !important;
+}
+
+
+
