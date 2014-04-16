@@ -5,7 +5,6 @@ module RedmineSomeFixes
     render_on :view_layouts_base_body_bottom, :text => %{<script>
   $(function(){
     $("table").colResizable();
-    //$("table").flexigrid();
   });
 </script>}
   end
