@@ -9,7 +9,7 @@ module RedmineSomeFixes
     render_on :view_layouts_base_body_bottom, :text => %{<script>
   $(function(){
     $(document).ready(function() {
-      $("p.user_id select").attr('style','width:#{size};');
+      $("p.user_id select, #issue_assigned_to_id").attr('style','width:#{size};');
       $(".select2, #issue_assigned_to_id, p.user_id select").select2();
       $(document).on('click', 'a', function(){
         $("p.user_id select").attr('style','width:#{size};');
