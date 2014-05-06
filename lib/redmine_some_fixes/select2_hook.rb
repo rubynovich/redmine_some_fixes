@@ -9,8 +9,8 @@ module RedmineSomeFixes
     render_on :view_layouts_base_body_bottom, :text => %{<script>
   $(function(){
     var update_js = function(){
-      $("p.user_id select, #issue_assigned_to_id, #incoming_letter_recipient_user_id, #outgoing_letter_signer_user_id").attr('style','width:#{size};');
-      $(".select2, #issue_assigned_to_id, p.user_id select, #incoming_letter_recipient_user_id, #outgoing_letter_signer_user_id").select2();
+      $("p.user_id select, #issue_assigned_to_id").attr('style','width:#{size};');
+      $(".select2, #issue_assigned_to_id, p.user_id select").select2();
       var user_select = $("select[id$=user_id]");
       user_select.attr('style','width:#{size};');
       user_select.select2();
