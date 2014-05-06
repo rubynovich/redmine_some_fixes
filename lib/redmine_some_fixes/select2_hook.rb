@@ -11,7 +11,7 @@ module RedmineSomeFixes
     var update_js = function(){
       $("p.user_id select, #issue_assigned_to_id").attr('style','width:#{size};');
       $(".select2, #issue_assigned_to_id, p.user_id select").select2();
-      var user_select = $("select[id$=user_id]");
+      var user_select = $("select[id$=user_id], select[id^=values_author_id]");
       user_select.attr('style','width:#{size};');
       user_select.select2();
     }
