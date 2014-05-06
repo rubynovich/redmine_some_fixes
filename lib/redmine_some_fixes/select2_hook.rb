@@ -10,7 +10,7 @@ module RedmineSomeFixes
   $(function(){
     var update_js = function(){
       $("p.user_id select, #issue_assigned_to_id").attr('style','width:#{size};');
-      $(".select2, #issue_assigned_to_id, p.user_id select").select2();
+      $(".select2, #issue_assigned_to_id, p.user_id select, #incoming_letter_recipient_user_id").select2();
     }
     $(document).on('click', 'a', function(){
       update_js();
