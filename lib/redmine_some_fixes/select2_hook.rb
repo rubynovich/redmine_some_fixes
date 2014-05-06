@@ -8,13 +8,18 @@ module RedmineSomeFixes
     render_on :view_layouts_base_html_head, :inline => "<%= stylesheet_link_tag 'select2', :plugin => 'redmine_some_fixes'%><%= javascript_include_tag 'select2', :plugin => 'redmine_some_fixes' %><%= javascript_include_tag 'select2_locale_#{I18n.locale.to_s}', :plugin => 'redmine_some_fixes' %>"
     render_on :view_layouts_base_body_bottom, :text => %{<script>
   $(function(){
-    $(document).ready(function() {
+    var update_js = function(){
       $("p.user_id select, #issue_assigned_to_id").attr('style','width:#{size};');
       $(".select2, #issue_assigned_to_id, p.user_id select").select2();
-      $(document).on('click', 'a', function(){
-        $("p.user_id select").attr('style','width:#{size};');
-        $(".select2, #issue_assigned_to_id, p.user_id select").select2();
-      });
+    }
+    $(document).on('click', 'a', function(){
+      update_js();
+    });
+    $(document).ready(function() {
+      update_js();
+    });
+    $(document).on('page:load page:change page:restore', function () {
+      update_js();
     });
   });
 </script>}
