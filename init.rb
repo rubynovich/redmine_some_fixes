@@ -1,7 +1,7 @@
 require 'redmine'
 require 'redmine_some_fixes/hooks'
-
-#require 'redmine_some_fixes/resize_columns_hook'
+require 'redmine_some_fixes/select2_hook'
+require 'redmine_some_fixes/turbolinks_hook'
 
 Redmine::Plugin.register :redmine_some_fixes do
   name 'Some fixes'
@@ -69,6 +69,14 @@ ActionView::Base.class_eval do
 #      content_tag('acronym', text, :title => format_time(time))
 #    end
   end
+
+  def principals_options_for_select_with_select2_fix(collection, selected=nil)
+    ret = principals_options_for_select_without_select2_fix(collection, selected)
+    ret.gsub!('<option', '<option class="option_select2" style="width:'+(Setting[:plugin_redmine_some_fixes][:width_for_principals_options_for_select] || '60%').to_s+'"')
+    ret.html_safe
+  end
+
+  alias_method_chain :principals_options_for_select, :select2_fix
 
   alias_method_chain :link_to_project, :tranc
   alias_method_chain :project_tree_options_for_select, :tranc

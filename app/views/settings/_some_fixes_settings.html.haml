@@ -4,3 +4,6 @@
 %p
   %label= l(:label_tranc_length)
   = text_field_tag("settings[tranc_length]", (@settings[:tranc_length] rescue nil))
+%p
+  %label= l(:label_width_for_principals_options_for_select)
+  = text_field_tag("settings[width_for_principals_options_for_select]", (@settings[:width_for_principals_options_for_select] rescue nil))

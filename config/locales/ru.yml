@@ -2,6 +2,7 @@
 ru:
   label_wrap_length: Длина строки заголовка (до переноса строки)
   label_tranc_length: Длина строки выпадающего списка
+  label_width_for_principals_options_for_select: Длинна для principals_options_for_select
 
   activerecord:
     errors:
