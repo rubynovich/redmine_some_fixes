@@ -1,7 +1,8 @@
 require 'redmine'
-require 'redmine_some_fixes/hooks'
+#require 'redmine_some_fixes/hooks'
 require 'redmine_some_fixes/select2_hook'
-require 'redmine_some_fixes/turbolinks_hook'
+#require 'redmine_some_fixes/turbolinks_hook'
+require 'redmine_some_fixes/sass_rails_helpers_patch'
 
 Redmine::Plugin.register :redmine_some_fixes do
   name 'Some fixes'
@@ -81,4 +82,57 @@ ActionView::Base.class_eval do
   alias_method_chain :link_to_project, :tranc
   alias_method_chain :project_tree_options_for_select, :tranc
   alias_method_chain :time_tag, :add_info
+
+
+
+  def javascript_include_tag(*sources)
+    options = sources.last.is_a?(Hash) ? sources.pop : {}
+    if plugin = options.delete(:plugin)
+      sources = sources.map do |source|
+        unless plugin
+          source
+        end
+      end
+    end
+    ret = ""
+    sources.compact!
+    if sources.is_a?(Array)
+      sources.each do |source|
+        ret += super(source, options).html_safe
+      end
+    else
+      ret = super(sources, options).html_safe
+    end
+    ret.html_safe
+  end
+
+
+  def stylesheet_link_tag(*sources)
+    options = sources.last.is_a?(Hash) ? sources.pop : {}
+    plugin = options.delete(:plugin)
+    sources = sources.map do |source|
+      #if current_theme && current_theme.stylesheets.include?(source)
+      #  current_theme.stylesheet_path(source)
+      unless plugin
+        source
+      end
+    end
+    sources.compact!
+    ret = ""
+    if sources.is_a?(Array)
+      sources.each do |source|
+        ret += super(source, options).html_safe
+      end
+    else
+      ret = super(sources, options).html_safe
+    end
+    ret.html_safe
+  end
+
+
+  #alias_method_chain :stylesheet_link_tag, :assets
+  #alias_method_chain :javascript_include_tag, :assets
+
+
+
 end
