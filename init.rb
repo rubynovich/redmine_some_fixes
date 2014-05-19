@@ -87,11 +87,17 @@ ActionView::Base.class_eval do
 
   def javascript_include_tag(*sources)
     options = sources.last.is_a?(Hash) ? sources.pop : {}
-    if plugin = options.delete(:plugin)
-      sources = sources.map do |source|
-        unless plugin
-          source
-        end
+    plugin_mirror = options.delete(:plugin_mirror)
+    plugin = options.delete(:plugin)
+    sources = sources.map do |source|
+      if plugin_mirror
+        options[:plugin] = plugin_mirror
+        source
+        #"#{request.scheme}://#{request.host_with_port}/assets/#{plugin_mirror}/javascripts/#{source}"
+      elsif plugin
+        nil
+      else
+        source
       end
     end
     ret = ""
@@ -110,10 +116,17 @@ ActionView::Base.class_eval do
   def stylesheet_link_tag(*sources)
     options = sources.last.is_a?(Hash) ? sources.pop : {}
     plugin = options.delete(:plugin)
+    plugin_mirror = options.delete(:plugin_mirror)
     sources = sources.map do |source|
       #if current_theme && current_theme.stylesheets.include?(source)
       #  current_theme.stylesheet_path(source)
-      unless plugin
+      if plugin_mirror
+        options[:plugin] = plugin_mirror
+        source
+        #"#{request.scheme}://#{request.host_with_port}/assets/#{plugin_mirror}/stylesheets/#{source}"
+      elsif plugin
+        nil
+      else
         source
       end
     end
