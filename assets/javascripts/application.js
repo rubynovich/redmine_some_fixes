@@ -6,7 +6,7 @@
 
 
 var doc_ready = function(){
-    $('.icon.icon-zoo, .icon.icon-zoom-out, .icon.icon-zoom-in, a[href="#"]').attr('data-no-turbolink','true');
+    $('.icon.icon-zoo, .icon.icon-zoom-out, .icon.icon-zoom-in, a[href="#"], a[data-remote="true"], a.icon.icon-user[href^="/users/"]').attr('data-no-turbolink','true');
 
 }
 
