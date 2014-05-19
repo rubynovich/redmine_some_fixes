@@ -130,6 +130,14 @@ ActionView::Base.class_eval do
   end
 
 
+#  def javascript_heads
+#    tags = javascript_include_tag('application')
+#    unless User.current.pref.warn_on_leaving_unsaved == '0'
+#      tags << "\n".html_safe + javascript_tag("$(window).load(function(){ warnLeavingUnsaved('#{escape_javascript l(:text_warn_on_leaving_unsaved)}'); });")
+#    end
+#    tags
+#  end
+
   #alias_method_chain :stylesheet_link_tag, :assets
   #alias_method_chain :javascript_include_tag, :assets
 
