@@ -1,4 +1,5 @@
 /*
  *= require ./some_fixes
+ *= require ./new_some_fixes
  *= require select2
 */
