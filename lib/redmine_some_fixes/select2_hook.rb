@@ -8,21 +8,24 @@ module RedmineSomeFixes
     #render_on :view_layouts_base_html_head, :inline => "<%= stylesheet_link_tag 'select2', :plugin => 'redmine_some_fixes'%><%= javascript_include_tag 'select2', :plugin => 'redmine_some_fixes' %><%= javascript_include_tag 'select2_locale_#{I18n.locale.to_s}', :plugin => 'redmine_some_fixes' %>"
     render_on :view_layouts_base_body_bottom, :text => %{<script>
   $(function(){
-    var update_js = function(){
-      $(".select2").select2();
-      var user_select = $("select[id$=user_id], select[id$=author_id], p.user_id select, select[id$=assigned_to_id] ");
-      user_select.attr('style','width:#{size}; min-width: 300px;');
-      user_select.select2();
-    }
-    $(document).on('click', 'a', function(){
-      update_js();
-    });
-    $(document).ready(function() {
-      update_js();
-    });
-    $(document).on('page:load page:change page:restore', function () {
-      update_js();
-    });
+    var is_mobile = false;
+    if(navigator.userAgent.search("mobile")>0 ){
+      var update_js = function(){
+        $(".select2").select2();
+        var user_select = $("select[id$=user_id], select[id$=author_id], p.user_id select, select[id$=assigned_to_id] ");
+        user_select.attr('style','width:#{size}; min-width: 300px;');
+        user_select.select2();
+      }
+      $(document).on('click', 'a', function(){
+        update_js();
+      });
+      $(document).ready(function() {
+        update_js();
+      });
+      $(document).on('page:load page:change page:restore', function () {
+        update_js();
+      });
+    };
   });
 </script>}
   end
