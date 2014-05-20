@@ -8,8 +8,17 @@ module RedmineSomeFixes
     #render_on :view_layouts_base_html_head, :inline => "<%= stylesheet_link_tag 'select2', :plugin => 'redmine_some_fixes'%><%= javascript_include_tag 'select2', :plugin => 'redmine_some_fixes' %><%= javascript_include_tag 'select2_locale_#{I18n.locale.to_s}', :plugin => 'redmine_some_fixes' %>"
     render_on :view_layouts_base_body_bottom, :text => %{<script>
   $(function(){
-    var is_mobile = false;
-    if(navigator.userAgent.search("mobile")>0 ){
+
+function isMobile() {
+ try {
+    if(/Android|webOS|iPhone|iPad|iPod|pocket|psp|kindle|avantgo|blazer|midori|Tablet|Palm|maemo|plucker|phone|BlackBerry|symbian|IEMobile|mobile|ZuneWP7|Windows Phone|Opera Mini/i.test(navigator.userAgent)) {
+     return true;
+    };
+    return false;
+ } catch(e){ console.log("Error in isMobile"); return false; }
+}
+
+    if(! isMobile()){
       var update_js = function(){
         $(".select2").select2();
         var user_select = $("select[id$=user_id], select[id$=author_id], p.user_id select, select[id$=assigned_to_id] ");
