@@ -1,4 +1,4 @@
-require_dependency 'fileutils'
+  u require_dependency 'fileutils'
 FileUtils.mkdir_p("#{Rails.root}/private") unless Dir.exist?("#{Rails.root}/private")
 #FileUtils.ln_sf("#{Rails.root}/)
 Rails.configuration.before_configuration do
@@ -51,7 +51,6 @@ end.join("\n")
   application_js.close
   #hard code fix to prepare application.css
   css_code = %{/*
- *= require ./app
 #{(Dir["#{Rails.root}/private/**/application.css.*"] +  Dir["#{Rails.root}/private/**/application.css"]).sort.map do |css|
     " *= require #{css.gsub("#{Rails.root.to_s}/private/plugin_assets/",'')}"
   end.join("\n")
