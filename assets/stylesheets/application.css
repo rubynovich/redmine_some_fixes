@@ -1,5 +1,8 @@
 /*
+ *= require font-awesome
  *= require ./some_fixes
  *= require ./new_some_fixes
  *= require select2
+ *= require ./slidebars
+ *= require ./mobile
 */

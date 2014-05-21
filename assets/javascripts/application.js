@@ -3,11 +3,10 @@
 //= require ./turbolinks
 //= require ./select2
 //= require ./select2_locale_ru.js
-
+//= require ./mobile
 
 var doc_ready = function(){
     $('.icon.icon-zoo, .icon.icon-zoom-out, .icon.icon-zoom-in, a[href="#"], a[data-remote="true"], a.icon.icon-user[href^="/users/"], a[href*="/gantt?id="], a.advanced-gantt').attr('data-no-turbolink','true');
-
 }
 
 $(document).on('click', 'a.icon.icon-zoom-in', function(e){
@@ -26,3 +25,6 @@ $(document).ready(function() {
 $(document).on('page:load page:change page:restore', function(){
     doc_ready();
 });
+
+
+
