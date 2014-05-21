@@ -7,7 +7,7 @@ function isMobile() {
     } catch(e){ console.log("Error in isMobile"); return false; }
 }
 
-//if (isMobile()){
+if (isMobile()){
 
     var ready_mobile = function(){
         $('#top-menu').addClass('sb-slidebar').addClass('sb-left');
@@ -23,4 +23,4 @@ function isMobile() {
         ready_mobile();
     });
 
-//}
+}
