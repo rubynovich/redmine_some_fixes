@@ -7,7 +7,7 @@ function isMobile() {
     } catch(e){ console.log("Error in isMobile"); return false; }
 }
 
-//if (isMobile()){
+if (isMobile()){
 
 
 
@@ -38,4 +38,4 @@ function isMobile() {
     $(document).on('page:load page:change page:restore', function(){
         ready_mobile();
     });
-//}
+}
