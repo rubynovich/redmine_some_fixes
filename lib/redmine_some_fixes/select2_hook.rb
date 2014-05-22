@@ -21,7 +21,7 @@ function isMobile() {
     if(! isMobile()){
       var update_js = function(){
         $(".select2").select2();
-        var user_select = $("select[id$=user_id], select[id$=author_id], p.user_id select, select[id$=assigned_to_id] ");
+        var user_select = $("select[id$=user_id], select[id$=author_id], p.user_id select, select[id$=assigned_to_id], select[id$=user_id]");
         user_select.attr('style','width:#{size}; min-width: 300px;');
         user_select.select2();
       }
