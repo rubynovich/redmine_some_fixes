@@ -12,6 +12,8 @@ if (isMobile()){
 
 
     var ready_mobile = function(){
+        $('select').css('height', '35px');
+        $('input').css('height', '30px');
         $('*:not("#sidebar-btn-slide")').css('font-size','1.02em');
         $('#top-menu').addClass('sb-slidebar').addClass('sb-left');
         if (! document.getElementById('sidebar-btn-slide')) $('#main-menu ul').append('<li id="sidebar-btn-slide" class="sb-toggle-left" style="float:right;"><i class="fa fa-bars"></i></li>');
@@ -20,14 +22,17 @@ if (isMobile()){
         $('.list').css('overflow','auto');
 
         $('.vsplitter').remove();
+        $('#sidebar a').css('font-size','1.2em');
+
+        $('#content').css('width','99%');
+
+
 
         $('#sidebar').css('float','none');
         $('#sidebar').css('width','99%');
         $('#sidebar').css('display','inline');
 
-        $('#sidebar a').css('font-size','1.2em');
 
-        $('#content').css('width','99%');
 
     }
 
