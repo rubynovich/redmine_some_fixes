@@ -13,6 +13,8 @@ if (isMobile()){
 
     var ready_mobile = function(){
         $('select').css('height', '35px');
+        $('.splitcontentleft').removeClass('splitcontentleft');
+        $('.splitcontentright').removeClass('splitcontentright');
         $('input').css('height', '30px');
         $('*:not("#sidebar-btn-slide")').css('font-size','1.02em');
         $('#top-menu').addClass('sb-slidebar').addClass('sb-left');
