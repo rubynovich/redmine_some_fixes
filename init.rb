@@ -1,6 +1,6 @@
 require 'redmine'
 #require 'redmine_some_fixes/hooks'
-require 'redmine_some_fixes/select2_hook'
+#require 'redmine_some_fixes/select2_hook'
 #require 'redmine_some_fixes/turbolinks_hook'
 require 'redmine_some_fixes/sass_rails_helpers_patch'
 
