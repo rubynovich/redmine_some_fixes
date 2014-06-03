@@ -18,7 +18,7 @@ if (isMobile()){
         $('input').css('height', '30px');
         $('*:not("#sidebar-btn-slide")').css('font-size','1.02em');
         $('#top-menu').addClass('sb-slidebar').addClass('sb-left');
-        if (! document.getElementById('sidebar-btn-slide')) $('#main-menu ul').append('<li id="sidebar-btn-slide" class="sb-toggle-left" style="float:right;"><i class="fa fa-bars"></i></li>');
+        if (! document.getElementById('sidebar-btn-slide')) $('#main-menu ul').before('<li id="sidebar-btn-slide" class="sb-toggle-left"><i class="fa fa-bars"></i></li>');
         $.slidebars();
         $('#sidebar-btn-slide').css('font-size','2em');
         $('.list').css('overflow','auto');
