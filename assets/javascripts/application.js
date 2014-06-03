@@ -22,12 +22,12 @@ var doc_ready = function(){
             $('#main').split({orientation: 'vertical', limit: 100, position: '75%', panel1: '#content', panel2: '#sidebar' });
             window.splitter_sidebar.refresh();
             window.splitter_sidebar.trigger('resize');
-
-            $(".select2").select2();
-            var user_select = $("select[id$=user_id], select[id$=author_id], p.user_id select, select[id$=assigned_to_id], select[id$=user_id], select[id$=_leader_id]");
-            user_select.attr('style','width:#{size}; min-width: 300px;');
-            user_select.select2();
         });
+        $(".select2").select2();
+        var user_select = $("select[id$=user_id], select[id$=author_id], p.user_id select, select[id$=assigned_to_id], select[id$=user_id], select[id$=_leader_id]");
+        user_select.attr('style','width:#{size}; min-width: 300px;');
+        user_select.select2();
+
     }
 }
 $(document).ready(function() {
