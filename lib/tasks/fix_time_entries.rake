@@ -7,11 +7,11 @@ namespace :redmine_some_fixes do
   task :back_float_times => :environment do
     puts OldEstimatedTime.all.count
     OldEstimatedTime.where("hours <> round(hours)").map{|i| {id: i.id, hours: i.hours}}.each do |t|
-      EstimatedTime.find(t[:id]).update_column(:hours, t[:houts])
+      EstimatedTime.find(t[:id]).update_column(:hours, t[:houts]) unless t[:houts].nil?
     end
     puts OldTimeEntry.all.count
     OldTimeEntry.where("hours <> round(hours)").map{|i| {id: i.id, hours: i.hours}}.each do |t|
-      TimeEntry.find(t[:id]).update_column(:hours, t[:houts])
+      TimeEntry.find(t[:id]).update_column(:hours, t[:houts]) unless t[:houts].nil?
     end
   end
 end
