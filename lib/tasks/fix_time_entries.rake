@@ -5,15 +5,13 @@ namespace :redmine_some_fixes do
   end
 
   task :back_float_times => :environment do
-    OldEstimatedTime.all.each do |oet|
-      if et = EstimatedTime.where(id: oet.id).first
-        et.update_column(:hours, oet.hours)
-      end
+    puts OldEstimatedTime.all.count
+    OldEstimatedTime.where("hours <> round(hours)").map{|i| {id: i.id, hours: i.hours}}.each do |t|
+      EstimatedTime.find(t[:id]).update_column(:hours, t[:houts])
     end
-    OldTimeEntry.all.each do |ote|
-      if te = TimeEntry.where(id: ote.id).first
-        te.update_column(:hours, ote.hours)
-      end
+    puts OldTimeEntry.all.count
+    OldTimeEntry.where("hours <> round(hours)").map{|i| {id: i.id, hours: i.hours}}.each do |t|
+      TimeEntry.find(t[:id]).update_column(:hours, t[:houts])
     end
   end
 end
