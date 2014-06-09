@@ -24,8 +24,8 @@ var doc_ready = function(){
             window.splitter_sidebar.trigger('resize');
         });
         $(".select2").select2();
-        var user_select = $("select[id$=user_id], select[id$=author_id], p.user_id select, select[id$=assigned_to_id], select[id$=user_id], select[id$=_leader_id]");
-        user_select.attr('style','width:#{size}; min-width: 300px;');
+        var user_select = $("select[id$=user_id], select[id$=author_id], p.user_id select, select[id$=assigned_to_id], select[id$=user_id], select[id$=_leader_id], select#project_id");
+        user_select.attr('style','width:400px; min-width: 400px;');
         user_select.select2();
 
     }
